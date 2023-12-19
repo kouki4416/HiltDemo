@@ -17,23 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DemoActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var activitySharedItem: ActivitySharedItem
-
-    @Inject
-    lateinit var activityItem: ActivityItem
-
-    @Inject
-    lateinit var singletonSharedItem: SingletonSharedItem
-
-    @Inject
-    lateinit var singletonItem: SingletonItem
-
     private val catViewModel: CatViewModel by viewModels()
 
     private val dogViewModel: DogViewModel by viewModels()
@@ -48,17 +34,25 @@ class DemoActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Column {
-                MyButton(activitySharedItem, "ActivitySharedItem")
-                MyButton(activityItem, "ActivityItem")
-                MyButton(singletonSharedItem, "SingletonSharedItem")
-                MyButton(singletonItem, "SingletonItem")
-                MyButton(catViewModel.getItemInstance(), "CatItem")
-                MyButton(dogViewModel.getItemInstance(), "DogItem")
-                MyButton(catViewModel.getSharedItemInstance(), "CatSharedItem")
-                MyButton(dogViewModel.getSharedItemInstance(), "DogSharedItem")
+                AnimalButton(catViewModel.getFood().showInstance(), "Cat's Food")
+                AnimalButton(dogViewModel.getFood().showInstance(), "Dog's Food")
+                AnimalButton(catViewModel.getSharedFood().showInstance(), "Cat's SharedFood")
+                AnimalButton(dogViewModel.getSharedFood().showInstance(), "Dog's SharedFood")
             }
         }
     }
+
+    @Composable
+    fun AnimalButton(instance: String, text: String) {
+        var instanceText by remember { mutableStateOf("")}
+        Column {
+            Button(modifier = Modifier.fillMaxWidth(), onClick = { instanceText = instance }) {
+                Text(text = text)
+            }
+            Text(text = instanceText, modifier = Modifier.fillMaxWidth())
+        }
+    }
+
 
     @Composable
     fun MyButton(item: Item, text: String) {

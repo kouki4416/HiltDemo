@@ -1,31 +1,45 @@
 package com.example.demoapplication
 
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityComponent::class)
-object DemoModule {
-    @Provides
-    @ActivityScoped
-    fun activitySharedItem(): ActivitySharedItem = ActivitySharedItem()
-
-    @Provides
-    fun activityItem(): ActivityItem = ActivityItem()
-}
-
-@Module
 @InstallIn(SingletonComponent::class)
-object DemoModule2 {
-    @Provides
-    @Singleton
-    fun singletonSharedItem(): SingletonSharedItem = SingletonSharedItem()
+object SingletonModule {
+
+//    @Provides
+//    fun provideViewModelItem(): Food = Food()
+//
+//    @Provides
+//    fun provideViewModelSharedItem(): SharedFood = SharedFood()
 
     @Provides
-    fun singletonItem(): SingletonItem = SingletonItem()
+    fun provideFood(): Food = Food()
+
+    @Provides
+    fun provideSpoon(): Spoon = Spoon()
+
+    @Provides
+    fun provideSharedFood(spoon: Spoon): SharedFood = SharedFood(spoon)
 }
+
+//@Module
+//@InstallIn(ActivityRetainedComponent::class)
+//object ActivityModule {
+//
+//    @Provides
+//    fun provideViewModelItem(): Food = Food()
+//
+//    @Provides
+//    @ActivityRetainedScoped
+//    fun provideViewModelSharedItem(): SharedFood = SharedFood()
+//}

@@ -6,14 +6,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CatViewModel @Inject constructor(
-    private val viewModelItem: ViewModelItem,
-    private val viewModelSharedItem: ViewModelSharedItem
+    private val food: Food,
+    private val sharedFood: SharedFood
 ) : ViewModel(){
-    fun getItemInstance(): ViewModelItem {
-        return viewModelItem
+    fun getFood(): Item {
+        return food
     }
 
-    fun getSharedItemInstance(): ViewModelSharedItem{
-        return viewModelSharedItem
+    fun getSharedFood(): Item{
+        return sharedFood
     }
 }

@@ -1,40 +1,24 @@
 
 package com.example.demoapplication
 
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class ActivitySharedItem @Inject constructor() : Item {
-    override fun showInstance(): String {
-        return this.toString()
-    }
-
-}
-
-class ActivityItem @Inject constructor() : Item {
+class Food constructor() : Item {
     override fun showInstance(): String {
         return this.toString()
     }
 }
 
-class SingletonSharedItem @Inject constructor() : Item {
+class SharedFood constructor(private val spoon: Spoon) : Item {
     override fun showInstance(): String {
         return this.toString()
     }
 }
 
-class SingletonItem @Inject constructor() : Item {
-    override fun showInstance(): String {
-        return this.toString()
-    }
-}
-
-class ViewModelItem @Inject constructor() : Item {
-    override fun showInstance(): String {
-        return this.toString()
-    }
-}
-
-class ViewModelSharedItem @Inject constructor() : Item {
+class Spoon constructor() : Item {
     override fun showInstance(): String {
         return this.toString()
     }
