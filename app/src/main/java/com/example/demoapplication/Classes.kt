@@ -12,7 +12,7 @@ class Food constructor() : Item {
     }
 }
 
-class SharedFood constructor() : Item {
+class SharedFood constructor(spoon: Spoon) : Item {
     override fun showInstance(): String {
         return this.toString()
     }

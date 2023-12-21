@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DemoActivity : ComponentActivity() {
     private val catViewModel: CatViewModel by viewModels()
     private val dogViewModel: DogViewModel by viewModels()

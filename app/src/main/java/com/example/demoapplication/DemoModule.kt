@@ -12,9 +12,18 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-//object SingletonModule {
-//    fun provideFood(): Food = Food()
-//
-//    fun provideSharedFood(): SharedFood = SharedFood()
-//}
+@Module
+@InstallIn(SingletonComponent::class)
+object SingletonModule {
+
+    @Provides
+    fun provideFood(): Food = Food()
+
+    @Provides
+    fun provideSpoon(): Spoon = Spoon()
+
+    @Provides
+    @Singleton
+    fun provideSharedFood(spoon: Spoon): SharedFood = SharedFood(spoon)
+}
 
