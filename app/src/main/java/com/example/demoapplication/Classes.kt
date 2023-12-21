@@ -12,7 +12,7 @@ class Food constructor() : Item {
     }
 }
 
-class SharedFood constructor(private val spoon: Spoon) : Item {
+class SharedFood constructor() : Item {
     override fun showInstance(): String {
         return this.toString()
     }

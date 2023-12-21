@@ -4,10 +4,9 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@HiltViewModel
-class CatViewModel @Inject constructor(
-    private val food: Food,
-    private val sharedFood: SharedFood
+class CatViewModel constructor(
+    private val food: Food = Food(),
+    private val sharedFood: SharedFood = SharedFood()
 ) : ViewModel(){
     fun getFood(): Item {
         return food
